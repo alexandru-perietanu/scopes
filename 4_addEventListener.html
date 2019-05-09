@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>add event listener</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        function RandomObject() {
+           
+        }
+
+        RandomObject.prototype = {
+            getBodyClickListener: function () {
+                return () => {
+                    console.log(this);
+                }
+            }
+        }
+
+        var randomObject = new RandomObject();
+
+
+        function start() {
+            document.body.addEventListener("click", bodyClick); 
+            document.body.addEventListener("click", () => {
+                console.log(this);
+            });
+            document.body.addEventListener("click", arrowFunctionBodyClickListener);
+            document.body.addEventListener("click", bodyClick.bind(window));
+            document.body.addEventListener("click", randomObject.getBodyClickListener());
+        }
+
+        function bodyClick() {
+            console.log(this);
+        }
+
+        var arrowFunctionBodyClickListener = () => {
+            console.log(this);
+        };
+
+
+    </script>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+</head>
+
+<body>
+    The content of the document......
+</body>
+
+</html>

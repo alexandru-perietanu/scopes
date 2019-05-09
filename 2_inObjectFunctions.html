@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>in object functions</title>
+    <script>
+
+        function f2() {
+            console.log("this is f2 from window ", this);
+        }
+
+        var c = {
+            c: "test",
+            f: function () {
+                console.log("context of this should be c ", this);
+                this.f2();
+
+                var _f = () => {
+                    console.log("this is the context of _f ", this);
+                }
+                _f();
+            },
+
+            f2: () => {
+                console.log("this is the context from f2 from c ", this);
+            }
+        }
+
+        var referenceToFfromC = c.f;
+
+        // console.log("///////////////////////");
+        // c.f(); //
+        // console.log("///////////////////////");
+        // console.log("");
+
+        // console.log("///////////////////////");
+        // referenceToFfromC(); //
+        // console.log("///////////////////////");
+        // console.log("");
+
+        // console.log("///////////////////////");
+        // c.f2(); //
+        // console.log("///////////////////////");
+
+    </script>
+</head>
+
+<body>
+    The content of the document......
+</body>
+
+</html>

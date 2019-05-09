@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Global context</title>
+    <script>
+        /*
+        *    this in global context
+        */
+        console.log("this in global context ", this); // 
+        console.log("");
+
+        function thisTest() {
+            console.log("this in thisTest ", this);
+        }
+
+        function thisTest2() {
+            "use strict"
+            var a = () => {
+                console.log("this in thisTest2 arrow function ", this);
+            }
+
+            console.log("this in thisTest2 ", this);
+            a();
+        }
+
+        var outsideArrowFunction = () => {
+            console.log("this in outside arrow function ", this);
+        }
+
+        function thisTest3() {
+            "use strict"
+            var a = outsideArrowFunction;
+
+            console.log("this in thisTest3 ", this);
+            a();
+        }
+
+        var a = {
+            a: "test"
+        };
+
+        var test2Bind = thisTest2.bind(a);
+        var test3Bind = thisTest3.bind(a);
+
+        // console.log("///////////////////////");
+        // thisTest(); 
+        // console.log("///////////////////////");
+        // console.log("");
+
+        // console.log("///////////////////////");
+        // thisTest2();
+        // console.log("");
+        // test2Bind();
+        // console.log("///////////////////////");
+        // console.log("");
+
+        // console.log("///////////////////////");
+        // thisTest3();
+        // console.log("");
+        // test3Bind();
+        // console.log("///////////////////////");
+
+    </script>
+</head>
+
+<body>
+    The content of the document......
+</body>
+
+</html>

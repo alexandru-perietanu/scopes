@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test</title>
+    <script>
+        var foo = "foo from global"; // this will be in the window object
+        let foo2 = "foo2 from global"; //because of let this will not be in window object
+        var a = {
+            foo: "foo din a",
+            f: function () {
+                let foo = "foo din f";
+                console.log(this); // 
+                var b = function () {
+                    console.log(foo); //  
+                    console.log(this.foo); // 
+                    console.log(this.foo2); // 
+                    console.log(this); //  
+                };
+                //b();
+                b.call(a);
+            }
+        }
+        a.f();
+
+
+    </script>
+</head>
+
+<body>
+    The content of the document......
+</body>
+
+</html>
